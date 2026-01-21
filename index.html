@@ -244,11 +244,20 @@
         function updateAI() {
             if (!gameRunning) return;
 
-            const paddleCenter = ai.y + ai.height / 2;
-            const predictedY = ball.y + ball.speedY * 10;
+            // AI reacts to current ball position with slight prediction
+            // Only predict when ball is moving towards AI
+            let targetY;
+            if (ball.speedX > 0) {
+                // Ball moving towards AI - predict a bit
+                const predictedY = ball.y + ball.speedY * 3;
+                targetY = predictedY - ai.height / 2;
+            } else {
+                // Ball moving away - return to center
+                targetY = canvas.height / 2 - ai.height / 2;
+            }
 
-            const targetY = predictedY - ai.height / 2;
-            ai.y += (targetY - ai.y) * 0.15;
+            // Match player's movement speed for fairness
+            ai.y += (targetY - ai.y) * 0.2;
 
             if (ai.y < 0) ai.y = 0;
             if (ai.y + ai.height > canvas.height) {
