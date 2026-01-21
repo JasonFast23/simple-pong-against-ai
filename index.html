@@ -128,15 +128,15 @@
             x: canvas.width / 2,
             y: canvas.height / 2,
             radius: 8,
-            speedX: 5,
-            speedY: 5,
-            maxSpeed: 12
+            speedX: 8,
+            speedY: 8,
+            maxSpeed: 18
         };
 
         // Paddle properties
         const paddleWidth = 12;
         const paddleHeight = 100;
-        const paddleSpeed = 8;
+        const paddleSpeed = 12;
 
         // Player paddle (left side)
         const player = {
@@ -183,8 +183,8 @@
             
             const angle = (Math.random() * Math.PI / 2) - Math.PI / 4;
             const direction = Math.random() < 0.5 ? 1 : -1;
-            ball.speedX = direction * 5 * Math.cos(angle);
-            ball.speedY = 5 * Math.sin(angle);
+            ball.speedX = direction * 8 * Math.cos(angle);
+            ball.speedY = 8 * Math.sin(angle);
         }
 
         function resetGame() {
